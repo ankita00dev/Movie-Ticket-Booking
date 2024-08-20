@@ -1,0 +1,252 @@
+NOTE : PLEASE READ THE PPT WHILE DOING THIS PROJECT IT WILL BE VERY HELPFULL
+
+STEP 1 : 
+first we have created a main file in that we have 
+if __name__ == "__main__":   #step 1
+    row = int(input("Enter the number of rows : "))
+    column = int(input("Enter the number of seats in each row : "))
+    
+    choice = int(input("Enter \n1. show the seats \n2. Buy a ticket \n3. statistics \n4. Show booked Tickets User Info \n0. Exit \n"))
+
+STEP 2 :
+after this 
+class Main():           #step2
+    def excute(self,choice):
+        if choice == 1:
+            pass
+        if choice == 2:
+            pass
+        if choice == 3:
+            pass
+        if choice == 4:
+            pass
+        if choice == 0:
+            pass
+
+
+STEP 4 : 
+We have created the object of the class and callled it 
+ obj = Main()      #step3
+    obj.excute(choice)
+
+STEP 5 : 
+we have created ticketbooking.py file 
+here first we tried to create a pattern shown in the PPT
+for i in range(7+1):      # step 4 to create patter
+    for j in range(8+1):
+        if i == 0:
+            if j == 0:
+                print(" ",end = ' ')
+            else:
+                print(j,end = ' ')
+        elif j == 0:
+            print(i,end=' ')
+        else:
+            print("S",end=' ')
+    print()
+
+
+STEP 6:  
+then we created a class movie_ticket
+class movie_ticket:
+    def __init__(self):
+        pass
+
+    def show_seats(self):
+
+STEP 7 :
+now we will paste the nested for loop from which we created a pattern 
+ def show_seats(self):
+        for i in range(7+1):      # step 4 to create patter
+            for j in range(8+1):
+                if i == 0:
+                    if j == 0:
+                        print(" ",end = ' ')
+                    else:
+                        print(j,end = ' ')
+                elif j == 0:
+                    print(i,end=' ')
+                else:
+                    print("S",end=' ')
+    print()
+        
+    
+STEP 8 : 
+now (7+1) and (8+1) cannot be hardcoded we are actually taking this value from the user from the main.py file that is our row and column 
+anyways we have to create objects of movie_ticket class in main.py file why because we have to call the methods 
+these methods --> 
+def excute(self,choice):
+        if choice == 1:
+            pass
+        if choice == 2:
+            pass
+        if choice == 3:
+            pass
+        if choice == 4:
+            pass
+        if choice == 0:
+            pass
+
+
+STEP 9 : 
+so we will import the ticketbooking in the main.py file
+from ticketbooking import movie_ticket 
+
+STEP 10 : 
+Creating object of movie_ticket 
+movie_ticket_obj = movie_ticket(row, column) we are passing row and column in the constructor so that it should be accessible to us in the movie_ticket class
+
+STEP 11: 
+we are taking the row and column from main.py file and passing that to the movie_ticket class initializer and initializing the values 
+def __init__(self,row,column):
+        self.row = row
+        self.column = column
+
+STEP 12 : 
+Now we are passing self.row and self.column to the for loop
+for i in range(self.row+1):      # step 4 to create patter
+    for j in range(self.column+1): 
+
+STEP 13 :
+here we are printing and calling the show_seat() method from ticketbooking.py
+if choice == 1:
+    print("***********Show the seats*************")
+        movie_ticket_obj.show_seats()
+
+STEP 14 : 
+ def buy_ticket(self):
+        row1 = int(input("Enter the row number : "))
+        column1 = int(input("Enter the column number : "))
+        ticket_price = 100
+        option = int(input(f"Your opt row is {row1} and column is {column1}, So price for ypur is is {ticket_price}. If you wish to book the ticket Enter \n1 . yes \n2 . No")) 
+        if option == 1:
+            name = input("Enter your name : ")
+            gender = input("Enter your gender : ")
+            age = int(input("Enter your age : "))
+            phone_number = int(input("Enter your phone number : "))
+
+# now we have to store the above data in to the dictinary so for that we need keys and values so seat number will act as keys fpr the doctionary (because when the user enters their seat number so in front of that all the details for the user should be visible like name,age,and so on)
+            seat_number = str(row1) + str(column1)                    #here we are adding the rows and column in string why ? because we want the output as 2 + 2 = 22 and not 4  
+            self.user_details[seat_number] = [name,gender,age,phone_number,seat_number]   # here user_details is the dictionary name and seat_number is the key 
+                print("Booked Successfully!")
+        else:
+            print("No Problem, Thank you for connecting with us")
+
+STEP 15 :
+Putting the choice into while loop why ? because we want it to display the choices and again like once i choice 1 then i next time it should run again
+    while True:    
+        choice = int(input("Enter \n1. show the seats \n2. Buy a ticket \n3. statistics \n4. Show booked Tickets User Info \n0. Exit \n"))
+
+        obj.excute(choice)
+
+STEP 16 : 
+writing the object creation above the while loop why beacause the object creation should not happen with every iteration that is why we have removed it from while loop and placed it above
+obj = Main() 
+
+STEP 17 : in the method (buy_ticket) to view the user details we are simply printing it  
+print(self.user_details) 
+
+STEP 18 : to find the stastitics as mentioned in the PPT
+def statistics(self):
+        total_seats = self.row * self.column      #here we have purposely stored the (self.row * self.column) into the total number of seats because it is frequently used 
+        no_of_tickets_booked = len(self.user_details)
+        percentage_of_tickets_booked = no_of_tickets_booked/ total_seats*100
+        print(f"Number of purchased tickets : {no_of_tickets_booked} \nPercentage of ticket booked : {percentage_of_tickets_booked} ")
+
+
+STEP 19 : now to find the current income we need the ticket price that is why we are storing the ticket price into the dictionary  
+    self.user_details[seat_number] = [name,gender,age,phone_number,seat_number,ticket_price] 
+
+
+STEP 20 : to get the current income we need to access ticket price and the ticket price we have stored into the dictionary 
+so for that we will create a for loop and iterate through the dictionary (user_details) however we only need ticket price from the dictinary(user_details)
+so we will write like 
+for k,v in self.user_details:
+
+now we need to store the all the ticket prices which we have retrived from the dictionary so for this we will create an empty list(price_list = [])
+and we will append the ticket_price into it 
+ price_lst = []
+        for k,v in self.user_details:
+            price_lst.append(v[4])    --> here v is the value and 4 is the index (this index refers to user_details index )why 4 ? because ticket_price is present at index 4 in the user_details
+
+and then we will add all the values of the list (price_list) by using inbuilt sum method
+current_income = sum(price_lst)
+
+
+STEP 21 : now we will print the current_income
+print(f"Number of purchased tickets : {no_of_tickets_booked} \nPercentage of ticket booked : {percentage_of_tickets_booked} \nCurrent income : {current_income} ")
+
+
+STEP 22 : If the total number of seats in the screen room is not more than 60, then the price of each ticket is 10 dollars.
+if total_seats <= 60:
+    total_income = total_seats * 10    # this 10 is the ticket price
+else:
+            front_price = 10
+            back_price = 8
+            front_seats = (self.row//2)*self.column
+            total_income = front_seats * front_price + (total_seats - front_seats) * back_price
+
+
+STEP 23 : #here we have purposely stored the (self.row * self.column) into the total number of seats because it is frequently used 
+total_seats = self.row * self.column 
+
+STEP 24 : Question : 4. Show booked Tickets User Info
+When I choose the 4th option:
+It should ask me the row and col number.
+If that row,col is booked show the Name,gender,age,Ticket Price and Phone No
+Answer : 
+we are asking row and column from the user and then i am combining then to get seat_number now whatever seat number 
+we gets we can check it into the user_details by using get method if there exist seat_number into the user_details then fetch it's data and store into the user_data 
+def user_info(self):
+        row1 = int(input("Enter the row : "))
+        column1 = int(input("Enter the column : "))
+        seat_number = str(row1) + str(column1) 
+        user_data = self.user_details.get("seat_number",None) 
+
+then we are saying if such data exist then print user_data
+if user_data:
+            print(user_data)
+
+and incase if it is not present or simply geeting None the we will say 
+
+STEP 25 : now we are calling the method
+if choice == 4:
+    print("********Show Booked Tickets User Info**********")
+    movie_ticket_obj.user_info()
+
+STEP 26 : Question :
+The ticket price is determined by the following rules:
+If the total number of seats in the screen room is not more than 60, then the price of each ticket is 10 dollars.
+In a larger room, the tickets are 10 dollars for the front half of the rows and 8 dollars for the back half. Please note that the number of rows can be odd, for example, 9 rows. In this case, the first half is the first 4 rows, and the second half is the rest 5 rows.
+
+Answer :
+total_seats = self.row * self.column 
+        if total_seats <= 60:
+            ticket_price = 10
+        else:
+            if row1 < (self.row//2):
+                ticket_price = 10
+            else:
+                ticket_price = 8
+
+STEP 27 :  deleting the print(user_details) why ? because we have written them for the testing purpose 
+
+STEP 28 : QUESTION : Reserved seat will show B. Like here Seat at (Row No 3 ,Column 5th) is Booked.
+ANSWER : here we have created a separate method for showing B into the pattern 
+
+def is_seat_booked(self,rows,columns):
+    seat_no = str(rows) +str(columns)
+        if seat_no in self.user_details.keys():   # here we are checking whether the seat_no is present inside the dictionary or not it will whether these values are present in the keys or not 
+            return True                           # if it is present it will return true else false 
+        return False
+
+STEP 29 : Now we are using the above method in the patter for loop and printing B
+if self.is_seat_booked(i,j):
+    print("B",end=" ")  
+
+
+
+
+
+
+
